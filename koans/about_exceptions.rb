@@ -28,7 +28,7 @@ class AboutExceptions < EdgeCase::Koan
     assert RuntimeError.ancestors.include?(StandardError),
       "RuntimeError is a subclass of StandardError"
 
-    assert_equal "Oops", ex.message# Unsure how this works...
+    assert_equal "Oops", ex.message# ex set when StandardError is raised
   end
 
   def test_raising_a_particular_error
