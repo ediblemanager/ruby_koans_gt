@@ -20,8 +20,7 @@ def triangle(a, b, c)
       # Check all the sides, return true if all conditions are met.
       valid = true
     end
-    if (valid)
-      puts "We have a = #{a}, b = #{b} and c = #{c}. Valid is #{valid}."
+    if(valid)
       if(a==b && a==c)
         :equilateral
       elsif(a == b || b == c || a == c )
