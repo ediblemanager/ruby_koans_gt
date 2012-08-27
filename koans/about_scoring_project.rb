@@ -31,6 +31,68 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 def score(dice)
   # You need to write this method
+  # Array is passed in. Populate!
+  if dice.length == 0
+    return 0
+  end
+  # Need to take array in, check the values within and then work out the total.
+  # Need conditions to work out what the total should be.
+
+  total = 0
+  one_array = []
+  five_array = []
+  other_numbers = []
+  dice.each do |number|
+    if number == 1
+      one_array << number
+    elsif number == 5
+      five_array << number
+    else
+      other_numbers << number
+    end
+  end
+  # One array additions
+  if one_array.length == 1
+    total += 100
+  elsif one_array.length == 2
+    total += 200
+  elsif one_array.length == 3
+    total += 1000
+  end
+  # Five array additions
+  # this could be done in a block
+  if five_array.length == 1
+    total += 50
+  elsif five_array.length == 2
+    total += 100
+  elsif five_array.length == 3
+    total += 500
+  elsif five_array.length == 4
+    total += 550
+  end
+  #total += find_duplicates(five_array)
+  total += find_duplicates(other_numbers)
+  return total
+end
+def find_duplicates(array)
+  # Define total
+  total = 0
+  # See if the array has >2 elements
+  if array.length >=3
+    # make the hash default to 0 so that += will work correctly
+    duplicates = Hash.new(0)
+
+    # iterate over the array, counting duplicate entries
+    array.each do |v|
+      duplicates[v] += 1
+    end
+    duplicates.each do |k, v|
+      if v == 3
+        total += k*100
+      end
+    end
+  end
+  return total
 end
 
 class AboutScoringProject < EdgeCase::Koan

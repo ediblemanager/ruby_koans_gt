@@ -85,7 +85,7 @@ class AboutIteration < EdgeCase::Koan
     # Files act like a collection of lines
     File.open("example_file.txt") do |file|
       upcase_lines = file.map { |line| line.strip.upcase }
-      assert_equal ["THIS\rIS\rA\rTEST"], upcase_lines
+      assert_equal ["THIS", "IS", "A", "TEST"], upcase_lines
     end
     # NOTE: You can create your own collections that work with each,
     # map, select, etc.
