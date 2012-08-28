@@ -2,9 +2,26 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 # Implement a DiceSet Class here:
 #
-# class DiceSet
-#   code ...
-# end
+ class DiceSet
+
+  attr_reader :values
+  def initialize
+    @values = Array.new
+  end
+
+  def sranding
+    srand(Time.now.to_f.to_i)
+  end
+
+  def clear_values
+    @values = []
+  end
+
+  def roll(num)
+    @values = (1..num).map { rand(6) + 1 }
+  end
+
+ end
 
 class AboutDiceProject < EdgeCase::Koan
   def test_can_create_a_dice_set
@@ -33,10 +50,11 @@ class AboutDiceProject < EdgeCase::Koan
 
   def test_dice_values_should_change_between_rolls
     dice = DiceSet.new
-
     dice.roll(5)
     first_time = dice.values
-
+    dice.clear_values
+    # Separate method for running srand. Didn't work including it in roll()
+    dice.sranding
     dice.roll(5)
     second_time = dice.values
 
@@ -59,5 +77,4 @@ class AboutDiceProject < EdgeCase::Koan
     dice.roll(1)
     assert_equal 1, dice.values.size
   end
-
 end
